@@ -15,6 +15,7 @@ services:
 
   kafka:
     build: .
+    image: max-kafka
     container_name: kafka
     hostname: kafka
     ports:
