@@ -5,7 +5,7 @@ MAINTAINER Max2 "service@max2.com"
 
 RUN apk add --update unzip wget curl docker jq coreutils
 
-ENV KAFKA_VERSION="2.3.0" SCALA_VERSION="2.11"
+ENV KAFKA_VERSION="2.1.1" SCALA_VERSION="2.11"
 ADD download-kafka.sh /tmp/download-kafka.sh
 RUN mkdir /app && \
     /tmp/download-kafka.sh && \
