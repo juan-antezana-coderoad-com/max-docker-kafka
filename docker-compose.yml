@@ -7,8 +7,8 @@ services:
     ports:
       - "2181:2181"
     volumes:
-          - ~/docker-volumes/zookeeper-data/data:/data
-          - ~/docker-volumes/zookeeper-data/datalog:/datalog
+      - ~/docker-volumes/zookeeper-data/data:/data
+      - ~/docker-volumes/zookeeper-data/datalog:/datalog
     networks:
       default:
         ipv4_address: ${MAX_ZOOKEEPER_HOST}
@@ -23,9 +23,9 @@ services:
       - "7203:7203"
     environment:
       KAFKA_BROKER_ID: ${KAFKA_BROKER_ID}
-#      KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
+      KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST_NAME}
 #      KAFKA_LISTENERS: ${KAFKA_LISTENERS}
-      KAFKA_ADVERTISED_LISTENERS: ${KAFKA_ADVERTISED_LISTENERS}
+#      KAFKA_ADVERTISED_LISTENERS: ${KAFKA_ADVERTISED_LISTENERS}
       KAFKA_ZOOKEEPER_CONNECT: ${MAX_ZOOKEEPER_HOST}:2181
       KAFKA_NUM_PARTITIONS: ${KAFKA_NUM_PARTITIONS}
 #      KAFKA_LOG_RETENTION_HOURS: ${KAFKA_LOG_RETENTION_HOURS}
@@ -33,12 +33,13 @@ services:
       KAFKA_DELETE_TOPIC_ENABLE: ${KAFKA_DELETE_TOPIC_ENABLE}
 #      KAFKA_LOG_RETENTION_CHECK_INTERVAL_MS: ${KAFKA_LOG_RETENTION_CHECK_INTERVAL_MS}
 #      KAFKA_LOG_CLEANER_DELETE_RETENTION_MS: ${KAFKA_LOG_CLEANER_DELETE_RETENTION_MS}
-      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-#      KAFKA_LOG_CLEANER_ENABLE: ${KAFKA_LOG_CLEANER_ENABLE}
+#      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_LOG_CLEANER_ENABLE: ${KAFKA_LOG_CLEANER_ENABLE}
 #      KAFKA_LOG_CLEANER_MIN_CLEANABLE_RATIO: ${KAFKA_LOG_CLEANER_MIN_CLEANABLE_RATIO}
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
     volumes:
       - ~/docker-volumes/kafka-data/logs:/app/kafka/logs
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       default:
         ipv4_address: ${MAX_KAFKA_HOST}
